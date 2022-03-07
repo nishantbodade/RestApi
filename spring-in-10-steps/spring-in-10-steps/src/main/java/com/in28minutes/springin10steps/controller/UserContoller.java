@@ -4,9 +4,7 @@ import com.in28minutes.springin10steps.model.User;
 import com.in28minutes.springin10steps.services.UserService;
 import org.hibernate.annotations.GeneratorType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,5 +22,11 @@ public class UserContoller{
     @GetMapping("/users/{id}")
     public User retriveUsers(@PathVariable int id){
         return service.findOne(id);
+    }
+
+    @PostMapping("/user")
+    public void save(@RequestBody User user){
+        User saveUser= service.save(user);
+        
     }
 }
