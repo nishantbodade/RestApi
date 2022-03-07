@@ -24,4 +24,8 @@ public class UserService {
     public User save(User user){
         return  repository.save(user);
     }
+
+    public User deleteById(int id){
+        return  repository.deleteById(id);
+    }
 }
