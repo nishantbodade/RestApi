@@ -1,5 +1,6 @@
 package com.in28minutes.springin10steps.controller;
 
+import com.in28minutes.springin10steps.exception.UserNotFoundException;
 import com.in28minutes.springin10steps.model.User;
 import com.in28minutes.springin10steps.services.UserService;
 import org.hibernate.annotations.GeneratorType;
@@ -24,7 +25,10 @@ public class UserContoller{
 
     @GetMapping("/users/{id}")
     public User retriveUsers(@PathVariable int id){
-        return service.findOne(id);
+        User user=service.findOne(id);
+        if(user==null)
+            throw new UserNotFoundException("id-"+id);
+        return user;
     }
 
     @PostMapping("/user")
